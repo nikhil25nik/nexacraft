@@ -38,14 +38,14 @@ export default function WriteArticle(){
             const data = await response.json()
 
             if(!response.ok){
-                console.log("this is a error")
-                toast.error(data.message)
+               
+               return toast.error(data.message)
             }
             toast.success("this you response ")
-            // console.log(data)
+            
             setContent(data.content)
         }catch(err){
-            console.log(err);
+           
             toast.error(err.message);
         }
         setLoading(false)

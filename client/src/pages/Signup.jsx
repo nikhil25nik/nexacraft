@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import {useNavigate} from "react-router-dom";
 import { getEnv } from "../helper/getEnv.js";
 import GoogleLogin from "../components/GoogleLogin.jsx";
+import toast from "react-hot-toast";
 
 export default function Signup() {
 
@@ -49,12 +50,12 @@ export default function Signup() {
 
 
       if(!response.ok){
-      return  console.log("error ",data.message);
+      return  toast.error(data.message)
       }
 
       navigate("/")
     }catch(err){
-      console.log(err)
+     toast.error(err.message)
     }
   }
 

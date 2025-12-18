@@ -22,7 +22,7 @@ export default function ReviewResume(){
                 setLoading(true);
                 const formData = new FormData()
                 formData.append("resume",input);
-                console.log(input)
+               
                 const response = await fetch(`${getEnv("VITE_BASE_API_URL")}/ai/review-resume`,{
                     method:"POST",
                     credentials:"include",

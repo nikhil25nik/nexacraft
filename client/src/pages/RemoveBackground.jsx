@@ -26,10 +26,10 @@ export default function RemoveBackground(){
                         })
 
                         const data = await response.json();
-                        console.log(data)
+                       
 
                         if(!response.ok){
-                            toast.error(data.message)
+                           return toast.error(data.message)
                         }
                         setContent(data.content)
 

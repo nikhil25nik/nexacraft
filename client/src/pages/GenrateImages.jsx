@@ -39,7 +39,7 @@ export default function GenrateImages(){
                     const data = await response.json()
                     
                     if(!response.ok){
-                        toast.error(data.message)
+                      return  toast.error(data.message)
                     }
                     setContent(data.secure_url);
                     toast.success("Generate image....");

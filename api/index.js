@@ -49,10 +49,6 @@ mongoose
     .catch(console.error);
 
 
-// app.get("/",(req,res)=>{
-//     res.send("this is simple route")
-// })
-
 app.listen(PORT,()=>{
     console.log(`Server is running on port ${PORT}`);
 })

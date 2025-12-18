@@ -17,7 +17,7 @@ const openrouter = new OpenAI({
 export const generateArticle = async (req, res, next) => {
   try {
     const userId = req.user.id;
-    console.log("USer ID",userId)
+
     const { prompt, length } = req.body;
 
     if (!prompt) {
@@ -45,11 +45,12 @@ export const generateArticle = async (req, res, next) => {
 
     res.status(200).json({
       success: true,
+      message:"Article is generated succesfully",
       content,
     });
 
   } catch (err) {
-    console.error("OpenRouter Error:", err);
+  
     next(handleError(500, err.message));
   }
 };
@@ -90,7 +91,7 @@ export const generateBlogTitle = async (req, res, next) => {
     });
 
   } catch (err) {
-    console.error("OpenRouter Error:", err);
+   
     next(handleError(500, err.message));
   }
 };
@@ -149,11 +150,12 @@ export const generateImage = async (req, res, next) => {
 
     res.status(200).json({
       success: true,
+      message:"Image is generated succesfully",
       secure_url,
     });
 
   } catch (err) {
-    console.error("Image Generation Error:", err);
+    
     next(handleError(500, err.message));
   }
 };
@@ -163,8 +165,7 @@ export const removeBackground = async (req, res, next) => {
   try {
     const userId  = req.user.id;
     const  image  = req.file;
-    // console.log(image)
-    // console.log(userId)
+   
 
     if (!image) {
       return next(handleError(400, "Image is required"));
@@ -200,7 +201,7 @@ export const removeBackground = async (req, res, next) => {
     });
 
   } catch (err) {
-    console.error("Image Generation Error:", err);
+
     next(handleError(500, err.message));
   }
 }
@@ -211,7 +212,7 @@ export const removeImageObject = async (req, res, next) => {
     const {object} = req.body;
     const  image  = req.file;
 
-    console.log(image)
+  
     if (!image || !object) {
       return next(handleError(400, "Image is required"));
     }
@@ -236,11 +237,12 @@ export const removeImageObject = async (req, res, next) => {
 
     res.status(200).json({
       success: true,
+      message:"Removed object a successfully",
       content:imageUrl,
     });
 
   } catch (err) {
-    console.error("Image Generation Error:", err);
+
     next(handleError(500, err.message));
   }
 }
@@ -249,7 +251,7 @@ export const reviewResume = async (req, res, next) => {
   try {
     const userId  = req.user.id;
     const resume = req.file;
-    // console.log("this is pdf",{resume})
+   
     if (!resume) {
       return next(handleError(400, "resume is required"));
     }
@@ -257,7 +259,7 @@ export const reviewResume = async (req, res, next) => {
     if(resume.size > 5 * 1024 *1024){
       return res.json({success:false, message:"Resume file is exceed allowed size"})
     }
-// console.log("PDFParser type:", typeof PDFParser);
+
 
    const extractedText = await extractPdfText(resume.path);
 
@@ -294,11 +296,12 @@ Resume:${extractedText}`
   
     res.status(200).json({
       success: true,
+      message:"Review resume a successfully",
       content,
     });
 
   } catch (err) {
-    console.error("Image Generation Error:", err);
+  
     next(handleError(500, err.message));
   }
 }

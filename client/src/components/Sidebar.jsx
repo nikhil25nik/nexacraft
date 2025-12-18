@@ -4,6 +4,7 @@ import { Eraser, FileText, Hash, House, icons, Image, LogOut, Scissors, SquarePe
 import { NavLink, useNavigate } from "react-router-dom";
 import { getEnv } from "../helper/getEnv";
 import { removeUser } from "../redux/user/user.slice";
+import toast from "react-hot-toast";
 
 const navItems = [
     {to:"/ai",label:"Dashboard", Icon: House},
@@ -32,12 +33,12 @@ export default function Sidebar({sidebar,setSidebar}){
           const data = await response.json();
     
           if(!response.ok){
-            console.log("this is a an error" , data.message)
+           return toast.error(data.message)
           }
           dispatch(removeUser())
           navigate("/")
         }catch(err){
-          console.log(err.message);
+          toast.error(err.message)
         }
       }
 

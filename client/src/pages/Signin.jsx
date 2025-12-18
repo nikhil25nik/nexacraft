@@ -6,6 +6,7 @@ import { getEnv } from "../helper/getEnv.js";
 import GoogleLogin from "../components/GoogleLogin.jsx";
 import { useDispatch } from "react-redux";
 import { setUser } from "../redux/user/user.slice.js";
+import toast from "react-hot-toast";
 
 export default function Signin() {
 
@@ -41,13 +42,13 @@ export default function Signin() {
 
 
       if(!response.ok){
-      return  console.log("error ",data.message);
+      return toast.error(data.message)
       }
 
       dispatch(setUser(data.user))
       navigate("/")
     }catch(err){
-      console.log(err)
+      toast.error(err.message)
     }
   }
 

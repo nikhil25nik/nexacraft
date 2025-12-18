@@ -23,7 +23,7 @@ export default function Dashboard(){
             })
 
             const data = await response.json()
-            // console.log(data.creations)
+            
             if(!response.ok){
                 return toast.error(data.message)
             }

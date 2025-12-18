@@ -5,6 +5,7 @@ import { getEnv } from "../helper/getEnv";
 import {useNavigate} from "react-router-dom"
 import { useDispatch } from "react-redux";
 import { setUser } from "../redux/user/user.slice";
+import toast from "react-hot-toast";
 
 
 export default function GoogleLogin(){
@@ -14,7 +15,7 @@ export default function GoogleLogin(){
 
     const handleLogin = async()=>{
         let googleResponse = await signInWithPopup(auth,authProvider);
-        console.log(googleResponse);
+      
         const user = googleResponse.user;
         const resBody = {
             name:user.displayName,
@@ -32,13 +33,13 @@ export default function GoogleLogin(){
             const data = await response.json();
 
             if(!response.ok){
-              return  console.log("Error",data.message);
+              return  toast.error(data.message)
             }
-            console.log("Success",data.message);
+            toast.success(data.message);
             dispatch(setUser(data.user))
             navigate("/")
         }catch(err){
-            console.log(err.message);
+            toast.error(err.message)
         }
     }
     return(

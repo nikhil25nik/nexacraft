@@ -43,7 +43,7 @@ export const toggleLikeCreation = async (req, res, next) => {
     const  {id}  = req.body;
     
     const creation = await Creation.findById(id);
-    console.log(creation)
+ 
 
     if (!creation) {
       return next(404, "Creation not found!");
