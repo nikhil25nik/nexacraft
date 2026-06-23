@@ -25,7 +25,7 @@ export const generateArticle = async (req, res, next) => {
     }
     const MAX_ALLOWED_TOKENS = 700;
     const response = await openrouter.chat.completions.create({
-      model: "google/gemini-3-pro-preview",
+      model: "openai/gpt-oss-120b:free",
       messages: [{ role: "user",content: prompt, },],
       max_tokens: Math.min( Number(length) || 200,MAX_ALLOWED_TOKENS),
       temperature: 0.7,
