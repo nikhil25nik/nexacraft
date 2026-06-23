@@ -276,7 +276,7 @@ export const reviewResume = async (req, res, next) => {
 Resume:${extractedText}`
 
     const response = await openrouter.chat.completions.create({
-      model: "google/gemini-3-pro-preview",
+      model: "openai/gpt-oss-120b:free",
       messages: [{ role: "user",content: prompt, },],
       max_tokens: 150,
       temperature: 0.7,
