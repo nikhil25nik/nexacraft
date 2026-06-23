@@ -66,7 +66,7 @@ export const generateBlogTitle = async (req, res, next) => {
     }
 
     const response = await openrouter.chat.completions.create({
-      model: "google/gemini-3-pro-preview",
+      model: "openai/gpt-oss-120b:free",
       messages: [{ role: "user",content: prompt, },],
       max_tokens: 100,
       temperature: 0.7,
